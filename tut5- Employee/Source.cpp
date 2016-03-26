@@ -31,17 +31,18 @@ public:
 
 class SalaryEmployee : public Employee {
 public:
-	SalaryEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ }
+	SalaryEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
 	float salary;
 
 	const void setSalary(float m_salary) { // declared constant for a fixed salary
 		salary = m_salary;
 	}
+
 };
 
 class HourlyEmployee : public Employee {
 public:
-	HourlyEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ }
+	HourlyEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
 	float hourly_rate;
 	int hours_worked;
 
@@ -56,7 +57,7 @@ public:
 
 class CommissionEmployee : public Employee {
 public:
-	CommissionEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ }
+	CommissionEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
 	float base_salary;
 	float rate;
 	float rev;
@@ -73,3 +74,13 @@ public:
 		rev = rate / 100.00;  //  not exactly sure what to do with revenue??? 
 	}
 };
+
+
+// testing 
+
+int main() {
+	SalaryEmployee Em1 ("Din", 1);
+	HourlyEmployee Em2 ("Povz", 2);
+	CommissionEmployee Em3 ("Dee", 3);
+
+}
