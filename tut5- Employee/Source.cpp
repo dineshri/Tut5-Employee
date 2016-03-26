@@ -23,16 +23,18 @@ public:
 	float salary(){
 		return m_salary;}
 
-	static int numberOfEmployees;
+	static int numberOfEmployees; // declaration of static member
 
 };
+
+// derived classes starts here
 
 class SalaryEmployee : public Employee {
 public:
 	SalaryEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ }
 	float salary;
 
-	const void setSalary(float m_salary) {
+	const void setSalary(float m_salary) { // declared constant for a fixed salary
 		salary = m_salary;
 	}
 };
@@ -49,5 +51,25 @@ public:
 
 	void setHoursWorked(int hworked){
 		hours_worked = hworked;
+	}
+};
+
+class CommissionEmployee : public Employee {
+public:
+	CommissionEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ }
+	float base_salary;
+	float rate;
+	float rev;
+
+	void setBaseSalary(float bsalary){
+		base_salary = bsalary;
+	}
+
+	void setRate(float m_rate){
+		rate = m_rate;
+	}
+
+	void setRevenue() {
+		rev = rate / 100.00;  //  not exactly sure what to do with revenue??? 
 	}
 };
