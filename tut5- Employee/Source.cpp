@@ -9,10 +9,9 @@ class Employee {
 protected:
 	string m_name;
 	int Number;
-	float m_salary;
 
 public:
-    Employee(string em_name, int num = 1, float em_salary = 1.00 ): m_name(em_name), Number(num), m_salary(em_salary) {  } // constructor of base class
+    Employee(string em_name, int num = 1): m_name(em_name), Number(num){  } // constructor of base class
 	
 	string name() {
 		return m_name;}   // method name()
@@ -20,8 +19,7 @@ public:
 	int staffNumber() {
 		return Number;}  // method staffNumber()
 
-	float salary(){
-		return m_salary;}
+	virtual float salary() = 0; // pure virtual function for salary to be modified in derived classes
 
 	static int numberOfEmployees; // declaration of static member
 
@@ -31,18 +29,22 @@ public:
 
 class SalaryEmployee : public Employee {
 public:
-	SalaryEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
+	SalaryEmployee(string em_name, int num = 1) : Employee(em_name, num = 1){ } // default constructor
 	float salary;
 
 	const void setSalary(float m_salary) { // declared constant for a fixed salary
 		salary = m_salary;
 	}
 
+	float salary(){
+		return salary;
+	}
+
 };
 
 class HourlyEmployee : public Employee {
 public:
-	HourlyEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
+	HourlyEmployee(string em_name, int num = 1) : Employee(em_name, num = 1){ } // default constructor
 	float hourly_rate;
 	int hours_worked;
 
@@ -53,14 +55,18 @@ public:
 	void setHoursWorked(int hworked){
 		hours_worked = hworked;
 	}
+
+	float salary(){
+		return (hourly_rate * hours_worked);
+	}
 };
 
 class CommissionEmployee : public Employee {
 public:
-	CommissionEmployee(string em_name, int num = 1, float em_salary = 1.00) : Employee(em_name, num = 1, em_salary = 1.00){ } // default constructor
+	CommissionEmployee(string em_name, int num = 1) : Employee(em_name, num = 1){ } // default constructor
 	float base_salary;
 	float rate;
-	float rev;
+	float revenue;
 
 	void setBaseSalary(float bsalary){
 		base_salary = bsalary;
@@ -70,8 +76,12 @@ public:
 		rate = m_rate;
 	}
 
-	void setRevenue() {
-		rev = rate / 100.00;  //  not exactly sure what to do with revenue??? 
+	void setRevenue(float rev) {
+		revenue = rev;  //  not exactly sure what to do with revenue??? 
+	}
+
+	float salary(){
+		return (base_salary + (rate * revenue));
 	}
 };
 
