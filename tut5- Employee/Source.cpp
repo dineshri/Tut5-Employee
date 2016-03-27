@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int Employee::numberOfEmployees = 0; // initialisation of static variable globally
+
 
 class Employee {
 protected:
@@ -21,7 +21,7 @@ public:
 
 	virtual float salary() = 0; // pure virtual function for salary to be modified in derived classes
 
-	static int numberOfEmployees; // declaration of static member
+	
 
 };
 
@@ -30,15 +30,17 @@ public:
 class SalaryEmployee : public Employee {
 public:
 	SalaryEmployee(string em_name, int num = 1) : Employee(em_name, num = 1){ } // default constructor
-	float salary;
+	float sal;
 
 	const void setSalary(float m_salary) { // declared constant for a fixed salary
-		salary = m_salary;
+		sal = m_salary;
 	}
 
 	float salary(){
-		return salary;
+		return sal; // salary calculation
 	}
+
+	
 
 };
 
@@ -57,8 +59,10 @@ public:
 	}
 
 	float salary(){
-		return (hourly_rate * hours_worked);
+		return (hourly_rate * hours_worked); // salary calculation 
 	}
+
+	
 };
 
 class CommissionEmployee : public Employee {
@@ -81,8 +85,10 @@ public:
 	}
 
 	float salary(){
-		return (base_salary + (rate * revenue));
+		return (base_salary + rate + revenue); // salary calculation (not sure if correct)
 	}
+
+	
 };
 
 
@@ -92,5 +98,20 @@ int main() {
 	SalaryEmployee Em1 ("Din", 1);
 	HourlyEmployee Em2 ("Povz", 2);
 	CommissionEmployee Em3 ("Dee", 3);
+	
 
+	Em1.setSalary(4000);
+
+	Em2.setHourlyRate(1000);
+	Em2.setHoursWorked(8);
+
+	Em3.setBaseSalary(2000);
+	Em3.setRate(500);
+	Em3.setRevenue(2500);
+
+	cout << Em1.name() << " earns " << Em1.salary() << endl;
+	cout << Em2.name() << " earns " << Em2.salary() << endl;
+	cout << Em3.name() << " earns " << Em3.salary() << endl;
+
+	
 }
